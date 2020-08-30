@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PromotionCard from 'components/Promotion/Card/Card';
-
-const promotion = {
-    "id": 1,
-    "title": "Kit Notebook Acer Aspire 3 + Mochila Green",
-    "price": 1799,
-    "imageUrl": "https://cdn.gatry.com/gatry-static/promocao/imagem/d21fef6610967f1c2a3a08a518ef9ef4.png",
-    "url": "https://amzn.to/2EtsikM",
-    "comments": [
-        {
-            "id": 1,
-            "coment": "Tela HD"
-        }
-    ]
-};
+import Axios from 'axios';
 
 const PagesPromotionSearch = () => {
+
+    const [promotions, setPromotions] = useState([]);
+
+    useEffect(() => {
+        Axios.get('http://localhost:3333/promotions?_embed=comments')
+            .then((res) => {
+                setPromotions(res.data);
+            });
+    }, []);
+
     return (
-        <PromotionCard promotion={promotion} />
+        <div>
+            {promotions.map((promotion) => {
+                return (
+                    <PromotionCard key={promotion.id} promotion={promotion} />
+                )
+            })}
+        </div>
     )
 }
 
