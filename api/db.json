@@ -1,28 +1,28 @@
 {
-    "promotions": [{
-            "id": 1,
-            "title": "Kit Notebook Acer Aspire 3 + Mochila Green",
-            "price": 1799,
-            "imageUrl": "https://cdn.gatry.com/gatry-static/promocao/imagem/d21fef6610967f1c2a3a08a518ef9ef4.png",
-            "url": "https://amzn.to/2EtsikM"
-        },
-        {
-            "id": 2,
-            "title": "Notebook Vaio",
-            "price": 3000,
-            "imageUrl": "https://cdn.gatry.com/gatry-static/promocao/imagem/d21fef6610967f1c2a3a08a518ef9ef4.png",
-            "url": "https://amzn.to/2EtsikM"
-        }
-    ],
-    "comments": [{
-            "id": 1,
-            "coment": "Tela HD",
-            "promotionId": 1
-        },
-        {
-            "id": 2,
-            "coment": "Tela HD FuLL",
-            "promotionId": 2
-        }
-    ]
+  "promotions": [{
+      "title": "O Chamado De Cthullu - Livro",
+      "url": "https://amzn.to/31Fr8LG",
+      "imageUrl": "https://cdn.gatry.com/gatry-static/promocao/imagem/924caa19b4c9020bcbf8ccafd043c478.png",
+      "price": "8",
+      "id": 3
+    },
+    {
+      "title": "Hitman e Shadowrun Collection Grátis Na Epic Games",
+      "url": "https://www.epicgames.com/store/en-US/free-games",
+      "imageUrl": "https://cdn.gatry.com/gatry-static/promocao/imagem/eed19526f2a81a807a80c9cd6c42cd96.png",
+      "price": "0",
+      "id": 4
+    }
+  ],
+  "comments": [{
+      "id": 1,
+      "coment": "Brochura",
+      "promotionId": 3
+    },
+    {
+      "id": 2,
+      "coment": "Jogo Grátis",
+      "promotionId": 4
+    }
+  ]
 }

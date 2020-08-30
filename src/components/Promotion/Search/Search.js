@@ -18,7 +18,7 @@ const PromotionSearch = () => {
             params.title_like = search;
         }
 
-        Axios.get('http://localhost:3333/promotions?_embed=comments', { params })
+        Axios.get('http://localhost:3333/promotions?_embed=comments&_order=desc&_sort=id', { params })
             .then((res) => {
                 setPromotions(res.data);
             });
