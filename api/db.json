@@ -1,9 +1,10 @@
 {
-  "promotions": [{
+  "promotions": [
+    {
       "title": "O Chamado De Cthullu - Livro",
       "url": "https://amzn.to/31Fr8LG",
       "imageUrl": "https://cdn.gatry.com/gatry-static/promocao/imagem/924caa19b4c9020bcbf8ccafd043c478.png",
-      "price": "8",
+      "price": "8.80",
       "id": 3
     },
     {
@@ -14,7 +15,8 @@
       "id": 4
     }
   ],
-  "comments": [{
+  "comments": [
+    {
       "id": 1,
       "coment": "Brochura",
       "promotionId": 3
