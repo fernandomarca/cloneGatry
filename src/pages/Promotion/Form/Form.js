@@ -1,5 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import PromotionForm from 'components/Promotion/Form/Form';
+import UIContainer from 'components/UI/Container';
 
 const PagesPromotionForm = () => {
 
@@ -7,8 +9,9 @@ const PagesPromotionForm = () => {
 
     return (
         <div>
-            Form
-            {id && <div>{id}</div>}
+            <UIContainer>
+                <PromotionForm id={id ? Number.parseInt(id, 10) : null} />
+            </UIContainer>
         </div>
     )
 }
