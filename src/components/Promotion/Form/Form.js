@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import Axios from 'axios';
 
+import useApi from 'components/utils/useApi';
 import './form.css';
 
 const initialValue = {
@@ -17,14 +17,30 @@ const PromotionForm = ({ id }) => {
 
     const history = useHistory();
 
+    const [load] = useApi({
+        url: `/promotions/${id}`,
+        method: 'get',
+        onCompleted: (response) => {
+            setValues(response.data);
+        }
+    });
+
+    const [save, saveInfo] = useApi({
+        url: id ? `/promotions/${id}` : `/promotions`,
+        method: id ? 'put' : 'post',
+        //data: values,
+        onCompleted: (response) => {
+            if (!response.error) {
+                history.push('/');
+            }
+        }
+    });
+
     useEffect(() => {
         if (id) {
-            Axios.get(`http://localhost:3333/promotions/${id}`)
-                .then((response) => {
-                    //console.log(response.data)
-                    setValues(response.data);
-                });
+            load();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     function onChange(ev) {
@@ -35,17 +51,9 @@ const PromotionForm = ({ id }) => {
 
     function onSubmit(ev) {
         ev.preventDefault();
-
-        const method = id ? 'put' : 'post';
-
-        const url = id
-            ? `http://localhost:3333/promotions/${id}`
-            : `http://localhost:3333/promotions`
-
-        Axios[method](url, values)
-            .then((response) => {
-                history.push('/');
-            });
+        save({
+            data: values
+        });
     }
 
     return (
@@ -56,6 +64,7 @@ const PromotionForm = ({ id }) => {
                 ? (<div>Carregando...</div>)
                 : (
                     <form onSubmit={onSubmit}>
+                        {saveInfo.loading && <span>Salvando dados...</span>}
                         <div className="promotion-form__group">
                             <label htmlFor="title">Título</label>
                             <input

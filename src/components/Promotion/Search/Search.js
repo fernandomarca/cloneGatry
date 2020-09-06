@@ -1,27 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import React, { useState, useEffect, useRef } from 'react';
+
 import { Link } from 'react-router-dom';
 
 import './search.css';
 import PromotionList from 'pages/Promotion/List/List';
+import useApi from 'components/utils/useApi';
 
 const PromotionSearch = () => {
 
-    const [promotions, setPromotions] = useState([]);
+    const mountRef = useRef(null);
 
     const [search, setSearch] = useState([]);
 
-    useEffect(() => {
-        const params = {};
-
-        if (search) {
-            params.title_like = search;
+    const [load, loadInfo] = useApi({
+        deBounceDelay: 300,
+        url: '/promotions',
+        method: 'get',
+        params: {
+            _embed: 'comments',
+            _order: 'desc',
+            _sort: 'id',
+            title_like: search || undefined
         }
+    });
 
-        Axios.get('http://localhost:3333/promotions?_embed=comments&_order=desc&_sort=id', { params })
-            .then((res) => {
-                setPromotions(res.data);
-            });
+    useEffect(() => {
+
+        load({
+            debounced: mountRef.current
+        });
+
+        if (!mountRef.current) {
+            mountRef.current = true;
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search]);
 
     return (
@@ -38,7 +50,11 @@ const PromotionSearch = () => {
                 onChange={(ev) => setSearch(ev.target.value)}
             />
 
-            <PromotionList promotions={promotions} loading={!promotions.length} />
+            <PromotionList
+                promotions={loadInfo.data}
+                loading={loadInfo.loading}
+                error={loadInfo.error}
+            />
         </div>
     )
 
