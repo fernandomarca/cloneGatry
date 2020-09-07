@@ -1,6 +1,5 @@
 {
-  "promotions": [
-    {
+  "promotions": [{
       "title": "O Chamado De Cthullu - Livro",
       "url": "https://amzn.to/31Fr8LG",
       "imageUrl": "https://cdn.gatry.com/gatry-static/promocao/imagem/924caa19b4c9020bcbf8ccafd043c478.png",
@@ -15,15 +14,14 @@
       "id": 4
     }
   ],
-  "comments": [
-    {
+  "comments": [{
       "id": 1,
       "coment": "Brochura",
       "promotionId": 3
     },
     {
       "id": 2,
-      "coment": "Jogo Grátis",
+      "coment": "Jogo Grátis epic games aproveite tempo indeterminado",
       "promotionId": 4
     }
   ]
