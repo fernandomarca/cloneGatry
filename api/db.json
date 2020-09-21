@@ -13,6 +13,13 @@
       "imageUrl": "https://cdn.gatry.com/gatry-static/promocao/imagem/eed19526f2a81a807a80c9cd6c42cd96.png",
       "price": "0",
       "id": 4
+    },
+    {
+      "title": "Teste",
+      "url": "https://www.epicgames.com/store/en-US/free-games",
+      "imageUrl": "https://cdn.gatry.com/gatry-static/promocao/imagem/eed19526f2a81a807a80c9cd6c42cd96.png",
+      "price": "500",
+      "id": 5
     }
   ],
   "comments": [

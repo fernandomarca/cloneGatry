@@ -13,7 +13,7 @@ const PromotionList = ({ loading, promotions, error }) => {
         return <div>Algo de errado não está certo</div>
     }
 
-    if (loading || promotions === null) {
+    if (promotions === null) {
         return <div>Carregando...</div>
     }
 
@@ -32,7 +32,7 @@ const PromotionList = ({ loading, promotions, error }) => {
                     />
                 )
             })}
-
+            {loading && <div>Carregando mais promoções...</div>}
             <UIModal
                 isOpen={Boolean(promotionId)}
                 onClickClose={() => setPromotionId(null)}

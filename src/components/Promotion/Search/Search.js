@@ -5,6 +5,14 @@ import { Link } from 'react-router-dom';
 import './search.css';
 import PromotionList from 'pages/Promotion/List/List';
 import useApi from 'components/utils/useApi';
+import UiInfiniteScroll from 'components/UI/InfiniteScroll/InfiniteScroll';
+
+const baseParams = {
+    _embed: 'comments',
+    _order: 'desc',
+    _sort: 'id',
+    _limit: 2,
+}
 
 const PromotionSearch = () => {
 
@@ -12,22 +20,23 @@ const PromotionSearch = () => {
 
     const [search, setSearch] = useState([]);
 
+    const [page, setPage] = useState(1);
+
     const [load, loadInfo] = useApi({
         deBounceDelay: 300,
         url: '/promotions',
         method: 'get',
-        params: {
-            _embed: 'comments',
-            _order: 'desc',
-            _sort: 'id',
-            title_like: search || undefined
-        }
     });
 
     useEffect(() => {
 
         load({
-            debounced: mountRef.current
+            debounced: mountRef.current,
+            params: {
+                ...baseParams,
+                _page: 1,
+                title_like: search || undefined
+            }
         });
 
         if (!mountRef.current) {
@@ -35,6 +44,29 @@ const PromotionSearch = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search]);
+
+    function fetchMore() {
+
+        const newPage = page + 1;
+
+        load({
+            isFetchMore: true,
+            params: {
+                ...baseParams,
+                _page: newPage,
+                title_like: search || undefined
+            },
+            updateRequestInfo: (newRequestInfo, prevRequestInfo) => ({
+                ...newRequestInfo,
+                data: [
+                    ...prevRequestInfo.data,
+                    ...newRequestInfo.data,
+                ]
+            })
+        });
+
+        setPage(newPage);
+    }
 
     return (
         <div className="promotion-search">
@@ -55,6 +87,9 @@ const PromotionSearch = () => {
                 loading={loadInfo.loading}
                 error={loadInfo.error}
             />
+            {loadInfo.data && !loadInfo.loading && loadInfo.data?.length < loadInfo.total && (
+                <UiInfiniteScroll fetchMore={fetchMore} />
+            )}
         </div>
     )
 
