@@ -1,3 +1,26 @@
+<h1>Gatry-clone</h1>
+
+## 🚀 Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- [Html5]
+- [CSS]
+- [ReactJs]
+- [Json-server]
+
+## 💻 Projeto
+
+Projeto clone Gatry básico de Promotion.
+
+## 🔖 Layout
+
+<img src="screen/screen.png">
+
+## Licença
+
+Esse projeto está sob a licença MIT.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
